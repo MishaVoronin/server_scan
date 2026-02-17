@@ -16,7 +16,7 @@ bot = telebot.TeleBot(config["bot"]["token"],threaded=False, skip_pending=True)
 @bot.message_handler(commands=["start"])
 def start(mess):
     if mess.from_user.id in config["bot"]["admins"]:
-        messeg = f"""Привет, это бот для отслеживания состояния сервера. Если какойто пораметр привысит лимит то он отправит сообщение об этом всем админам. Ты можеш посмотреть состояние сервера по команде /report"""
+        messeg = f"""Привет, это бот для отслеживания состояния сервера. Если какой-то параметр превысит лимит, он отправит сообщение об этом всем админам. Ты можешь посмотреть состояние сервера по команде /report"""
         bot.send_message(mess.from_user.id,messeg)
 def rep_w(rep):
     report_str = f""
@@ -44,6 +44,6 @@ def alarm(rep):
     for admin_id in config["bot"]["admins"]:
         bot.send_message(admin_id,rep_w(rep))
 def run():
-    print("bot is raning")
+    print("Bot is running")
     bot.polling(none_stop=True, timeout=60, long_polling_timeout=60)
 
