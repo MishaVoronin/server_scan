@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Минимальное автообновление</title>
+    <title>Server scan</title>
 </head>
 <body>
     <div id="output">Загрузка...</div>
 
     <script>
         async function updateData() {
-            const response = await fetch('/api/data');
+            const response = await fetch('/report');
             const text = await response.text();
             document.getElementById('output').textContent = text;
         }

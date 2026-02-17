@@ -8,9 +8,9 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/api/data')
+@app.route('/report')
 def get_data():
-    return bot.rep_w(rp.report())
+    return rp.report()
 
 if __name__ == '__main__':
 
