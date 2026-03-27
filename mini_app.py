@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import report as rp
-import bot
+
 
 app = Flask(__name__)
 
@@ -10,8 +10,8 @@ def index():
 
 @app.route('/api/data')
 def get_data():
-    return bot.rep_w(rp.report())
+    return rp.report()
 
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=False)
