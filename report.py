@@ -49,22 +49,5 @@ def report():
 
 
 
-def scaning():
-    with open('config.json', 'r', encoding='utf-8') as f:
-        config = json.load(f)
-    while True:
-        flag = False
-        rep = report()
-        for c in rep.keys():
-            c_rep = rep[c]["rep"]
-            c_lim = rep[c]["lim"]
-            for k in c_lim.keys():
-                if c_rep[k]>=c_lim[k]:
-                    flag = True
-        if flag:
-            import main
-            main.alarm(rep)            
-        time.sleep(config["scan"]["time_betwin_scans"])
-
 
 
