@@ -39,7 +39,8 @@ def MEM_scanner():
 
 def report():
     with open('limits.json', 'r', encoding='utf-8') as f:
-        limits = json.load(f)
+        conf = json.load(f)
+    limits = conf["limits"]
     report_dict = {}
     for c in funcs.keys():
         report_dict[c] = {}

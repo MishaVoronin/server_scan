@@ -1,0 +1,12 @@
+{
+    "limits":{
+        "CPU":{"percentage used":25.0},
+        "MEM":{"percentage used":50.0}
+    },
+    "scan": {
+        "CPU" : true,
+        "mem" : true,
+        "time_betwin_scans": 15,
+        "time_betwin_alarm_m": 2 
+    }
+}
