@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  server_scan:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server_scanner
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Moscow
+    networks:
+      - server_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  server_network:
+    driver: bridge
