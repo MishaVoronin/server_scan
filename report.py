@@ -24,18 +24,48 @@ def TIME_scanner():
 @charkt(name="CPU")
 def CPU_scanner():
     usage = psutil.cpu_percent(interval=1)
-    return {"percentage used":usage}
+    return {"percentage":usage}
 
 @charkt(name="MEM")
 def MEM_scanner():
     MEM = psutil.virtual_memory()
-    return {
-        "total": round(MEM.total / (1024 ** 3), 2),
-        "available": round(MEM.available / (1024 ** 3), 2),
-        "used": round(MEM.used / (1024 ** 3), 2),
-        "percentage used": MEM.percent
-    }
+    return {"percentage": MEM.percent}
 
+@charkt(name="NWS")
+def NWS_scanner():
+    # Получаем начальные показания
+    start = psutil.net_io_counters()
+    time.sleep(1) 
+    # Получаем конечные показания
+    end = psutil.net_io_counters()
+    
+    # Правильно вычисляем разницу в байтах (конечное - начальное)
+    bytes_recv = end.bytes_recv - start.bytes_recv
+    bytes_sent = end.bytes_sent - start.bytes_sent
+    
+    # Переводим в Мбит/с (байты * 8 / 1_000_000)
+    download_mbps = (bytes_recv * 8) / 1_000_000
+    upload_mbps = (bytes_sent * 8) / 1_000_000
+    
+    with open('config.json', 'r', encoding='utf-8') as f:
+        conf = json.load(f)
+
+    # Защита от отрицательных значений (на случай, если счетчики сбросились)
+    download_mbps = max(0, download_mbps)
+    upload_mbps = max(0, upload_mbps)
+    
+    # Получаем максимальные скорости
+    max_download = conf["scan"].get("max_download_spid", 100)
+    max_upload = conf["scan"].get("max_upload_spid", 100)
+    
+    # Вычисляем проценты, ограничиваем 100%
+    download_percent = min((download_mbps / max_download * 100), 100)
+    upload_percent = min((upload_mbps / max_upload * 100), 100)
+    
+    return {
+        "download_percent": round(download_percent, 1),
+        "upload_percent": round(upload_percent, 1)
+    }
 
 def report():
     with open('config.json', 'r', encoding='utf-8') as f:

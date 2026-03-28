@@ -1,12 +1,17 @@
 {
     "limits":{
-        "CPU":{"percentage used":25.0},
-        "MEM":{"percentage used":50.0}
+        "CPU":{"percentage" : 50.0},
+        "MEM":{"percentage" : 50.0},
+        "NWS":{"download_percent" : 50.0,
+               "upload_percent"   : 50.0}
     },
     "scan": {
         "CPU" : true,
-        "mem" : true,
-        "time_betwin_scans": 15,
-        "time_betwin_alarm_m": 2 
+        "MEM" : true,
+        "time_betwin_scans"  : 15,
+        "time_betwin_alarm_m": 2, 
+        "max_download_spid"  : 100.0, 
+        "max_upload_spid"    : 100.0
+        
     }
 }
