@@ -1,0 +1,58 @@
+body {
+    font-family: monospace;
+    padding: 20px;
+    background: #1e1e1e;
+    color: #d4d4d4;
+}
+.metric {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-left: 3px solid #444;
+}
+.metric-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #569cd6;
+}
+.value {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.green {
+    color: #4ec9b0;
+}
+.red {
+    color: #f48771;
+    background: #5a2d2d;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.white {
+    color: #d4d4d4;
+}
+.normal {
+    color: #4ec9b0;
+}
+.warning {
+    color: #f48771;
+    background: #5a2d2d;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.default {
+    color: #d4d4d4;
+}
+hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 20px 0;
+}
+.raw {
+    margin-top: 30px;
+    font-size: 0.8em;
+    color: #888;
+}
