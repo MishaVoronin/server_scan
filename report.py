@@ -19,7 +19,7 @@ def TIME_scanner():
     now = datetime.now()
     return{
             "date": now.strftime("%d.%m"),
-            "time": now.strftime("%H.%M")
+            "time": now.strftime("%H.%M.%S")
     }
 @charkt(name="CPU")
 def CPU_scanner():
@@ -77,8 +77,3 @@ def report():
         report_dict[c]["rep"] = funcs[c]()
         report_dict[c]["lim"] = limits[c] if c in limits.keys() else {}
     return report_dict
-
-
-
-
-
