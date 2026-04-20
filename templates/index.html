@@ -28,10 +28,12 @@
     </body>
     <script>
         get = i=>document.getElementById(i);
+
         setInterval(()=>
         fetch('/api/data')
         .then(d=>d.json())
         .then(r=>{
+
             get('time').innerHTML = r.TIME.time;
             get('date').innerHTML = r.TIME.date;
             get('cpu').innerHTML = r.CPU.rep.percentage;
@@ -43,3 +45,4 @@
         }), 1000);
     </script>
 </html>
+
