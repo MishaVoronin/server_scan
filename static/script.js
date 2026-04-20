@@ -32,26 +32,26 @@ function displayMetrics(data) {
             </div>
         `;}
     if (data.NWS) {
-        if (data.NWS.rep.download_percent !== undefined) {
-            const downValue = data.NWS.rep.download_percent;
-            const downLimit = data.NWS.lim?.download_percent;
+        if (data.NWS.rep.download_mbps !== undefined) {
+            const downValue = data.NWS.rep.download_mbps;
+            const downLimit = data.NWS.lim?.download_mbps;
             const downColorClass = getColorClass(downValue, downLimit);
             html += `
                 <div class="metric">
                     <div class="metric-name">NWS (загрузка):</div>
                     <div class="value ${downColorClass}">${formatValue(downValue)}</div>
-                    ${downLimit ? `<div style="margin-left: 20px; font-size: 0.8em; color: #888;">лимит: ${downLimit}%</div>` : ''}
+                    ${downLimit ? `<div style="margin-left: 20px; font-size: 0.8em; color: #888;">лимит: ${downLimit}</div>` : ''}
                 </div>
             `;}
-        if (data.NWS.rep.upload_percent !== undefined) {
-            const upValue = data.NWS.rep.upload_percent;
-            const upLimit = data.NWS.lim?.upload_percent;
+        if (data.NWS.rep.upload_mbps !== undefined) {
+            const upValue = data.NWS.rep.upload_mbps;
+            const upLimit = data.NWS.lim?.upload_mbps;
             const upColorClass = getColorClass(upValue, upLimit);
             html += `
                 <div class="metric">
                     <div class="metric-name">NWS (отдача):</div>
                     <div class="value ${upColorClass}">${formatValue(upValue)}</div>
-                    ${upLimit ? `<div style="margin-left: 20px; font-size: 0.8em; color: #888;">лимит: ${upLimit}%</div>` : ''}
+                    ${upLimit ? `<div style="margin-left: 20px; font-size: 0.8em; color: #888;">лимит: ${upLimit}</div>` : ''}
                 </div>
             `;}}
     if (data.TIME) {
