@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,4 +10,32 @@
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+</html>-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Сканер сервера</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <p>TIME:<div id="time"></div></p>
+        <p>CPU:<div id="cpu"></div></p>
+        <p>MEM:<div id="mem"></div></p>
+        <p>NET:<div id="netd"></div><div id="netu"></div></p>
+    </body>
+    <script>
+        get = i=>document.getElementById(i)
+        setInterval(()=>
+        fetch('/api/data')
+        .then(d=>d.json())
+        .then(r=>{
+            get('time') = r.TIME.rep;
+            get('cpu') = r.CPU.rep;
+            get('mem') = r.MEM.rep;
+            get('netd') = r.NET.rep.download;
+            get('netu') = r.NET.rep.upload;
+            console.log(r);
+        }), 1000);
+    </script>
 </html>
