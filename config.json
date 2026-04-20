@@ -3,8 +3,8 @@
         "CPU" :{"percentage" : 50.0},
         "MEM" :{"percentage" : 50.0},
         "NET" :{
-            "download_byts/s" : 0,
-            "upload_byts/s" : 0
+            "download" : 0,
+            "upload" : 0
         }
     },
     "scan" : {

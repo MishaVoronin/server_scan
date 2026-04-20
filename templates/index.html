@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,4 +10,36 @@
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+</html>-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Сканер сервера</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <p>TIME:<span id="time"></span></p>
+        <p>DATE:<span id="date"></span></p>
+        <p>CPU:<span id="cpu"></span>%</p>
+        <p>MEM:<span id="mem"></span>%</p>
+        <p>DNL:<span id="dnl"></span> bit/s</p>
+        <p>UPL:<span id="upl"></span> bit/s</p>
+    </body>
+    <script>
+        get = i=>document.getElementById(i);
+        setInterval(()=>
+        fetch('/api/data')
+        .then(d=>d.json())
+        .then(r=>{
+            get('time').innerHTML = r.TIME.time;
+            get('date').innerHTML = r.TIME.date;
+            get('cpu').innerHTML = r.CPU.rep.percentage;
+            get('mem').innerHTML = r.MEM.rep.percentage;
+            get('dnl').innerHTML = r.NET.rep.download;
+            get('upl').innerHTML = r.NET.rep.upload;
+            
+            
+        }), 1000);
+    </script>
 </html>

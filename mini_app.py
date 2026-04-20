@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import psutil
 import time
 import json
@@ -20,8 +20,8 @@ def NET_scanner():
     time.sleep(1) 
     end = psutil.net_io_counters()
     return {
-        "download_byts/s": end.bytes_recv - start.bytes_recv,
-        "upload_byts/s"  : end.bytes_sent - start.bytes_sent}
+        "download": end.bytes_recv - start.bytes_recv,
+        "upload"  : end.bytes_sent - start.bytes_sent}
 
 def report():
     with open('config.json', 'r', encoding='utf-8') as f:
@@ -41,6 +41,7 @@ def report():
             "lim":conf["limits"]["NET"]
         }
     }
+    return jsonify(rep)
 
 
 
@@ -57,4 +58,4 @@ def get_data():
 
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=True)
